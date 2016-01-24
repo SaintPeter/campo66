@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "41636e224464fd9bc374dd9abd122f03",
-    "content-hash": "d59785de9e1555ef4317a7415d4e0cb5",
+    "hash": "d0de18cde579ae4e5dd7e883c91d1ae6",
+    "content-hash": "7783f047b32478a1463091fb73c4db95",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1832,6 +1832,50 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "appzcoder/crud-generator",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appzcoder/crud-generator.git",
+                "reference": "70d950ac9caba1e204b389a5349fb0f6216156e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/70d950ac9caba1e204b389a5349fb0f6216156e9",
+                "reference": "70d950ac9caba1e204b389a5349fb0f6216156e9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.*|5.2.*",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Appzcoder\\CrudGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sohel Amin",
+                    "email": "sohelamincse@gmail.com",
+                    "homepage": "http://www.appzcoder.com"
+                }
+            ],
+            "description": "Laravel 5 CRUD Generator",
+            "keywords": [
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator"
+            ],
+            "time": "2015-12-28 18:20:24"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
