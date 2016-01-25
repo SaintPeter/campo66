@@ -20,7 +20,7 @@
                     <td>{{ $item->last_name }}</td>
                     <td>{{ $item->married_name }}</td>
                     <td>
-                        <a href="{{ url('guests/' . $item->id . '/show') }}">
+                        <a href="{{ url('guests/' . $item->id ) }}">
                             <button type="submit" class="btn btn-info btn-xs">Show</button>
                         </a> /
                         <a href="{{ url('guests/' . $item->id . '/edit') }}">
