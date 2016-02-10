@@ -7,6 +7,8 @@
 	<title>Campoliondo High School Class of 1966</title>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<style>
 		body {
 			padding-top: 70px;
@@ -56,5 +58,8 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	    @yield('script')
+	</script>
 </body>
 </html>

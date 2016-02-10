@@ -65,6 +65,20 @@ class GuestsController extends Controller
     }
 
     /**
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    *
+    * @return Response
+    */
+    public function detail($id)
+    {
+    $guest = Guest::findOrFail($id);
+
+    return view('guests.partial.detail', compact('guest'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

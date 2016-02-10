@@ -1,0 +1,17 @@
+/* guests index */
+.hiderow td {
+    padding: 0px !important;
+    display: none;
+}
+
+.detailrow td {
+    transition-duration: 500;
+}
+
+.button-holder {
+    vertical-align: middle;
+}
+
+.action-col {
+    width: 160px;
+}
