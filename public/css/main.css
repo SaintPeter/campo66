@@ -8,6 +8,10 @@
     transition-duration: 500;
 }
 
+.guestrow td {
+    cursor: pointer;
+}
+
 .button-holder {
     vertical-align: middle;
 }

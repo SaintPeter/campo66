@@ -28,5 +28,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::resource('/guests', 'GuestsController');
-    Route::get('/guests/detail/{id}', 'GuestsController@detail');
+    Route::get('/guests/detail/{id}', 'GuestsController@detail')
+        ->name('guests.detail');
+    Route::get('/guests/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
+    ->name('guests.setstatus');
 });

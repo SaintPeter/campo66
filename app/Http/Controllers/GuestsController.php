@@ -79,6 +79,23 @@ class GuestsController extends Controller
     }
 
     /**
+    * Update User Status
+    *
+    * @param  int  $id
+    * @param  string $status
+    *
+    * @return Response
+    */
+    public function setstatus($id, $status)
+    {
+        $guest = Guest::findOrFail($id);
+        $guest->status = $status;
+        $guest->save();
+
+        return "true";
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

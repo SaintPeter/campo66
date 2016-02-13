@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('script')
-$('.showdetail').on('click', toggleRow);
+// Handlers
+$('.guestrow > td:not(.noclick)').on('click', toggleRow);
+$('.set_status').on('click', setStatus);
+$(document).on('click', '.phonetype', setPhoneType);
 
 function toggleRow(e) {
     e.preventDefault();
-    var id = $(this).data('id');
+    var id = $(this).parent().data('id');
     var detailId = "#detail" + id;
     var parentRow = $(detailId).parent();
 
@@ -13,12 +16,42 @@ function toggleRow(e) {
         // Unhide
         $(detailId).load('/guests/detail/' + id);
         parentRow.removeClass('hiderow');
-        $(this).text('Hide Detail');
+        //$(this).text('Hide Detail');
     } else {
         // Hide
         parentRow.addClass('hiderow');
-        $(this).text('Show Detail');
+        //$(this).text('Show Detail');
     }
+}
+
+function setStatus(e) {
+    e.preventDefault();
+
+    var colors = {
+        "Unknown": "btn-default",
+        "Attending": "btn-success",
+        "Not Attending": "btn-warning",
+        "Deceased": "btn-info"
+    };
+
+    var id = $(this).data('id');
+    var status = $(this).text();
+    var button = $(this).parent().parent().prev();
+    var oldStatus = button.text().trim();
+
+    $.get('{{ route('guests.setstatus') }}/' + id + '/' + status, function(data) {
+        button.html(status + ' <span class="caret"></span>');
+        console.log("Old Status:", "'" + oldStatus + "'", "color:", colors[oldStatus]);
+        button.removeClass(colors[oldStatus]).addClass(colors[status]);
+    }).fail(function() {
+        // Handle Failure
+        alert('Failure Occured');
+    });
+}
+
+function setPhoneType(e) {
+    e.preventDefault();
+    $(this).parent().parent().parent().prev().val( $(this).text() );
 }
 
 
@@ -33,33 +66,31 @@ function toggleRow(e) {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Married Name</th>
-                    <th>
-                        <div class="action-col">Actions</div>
-                    </th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($guests as $item)
-                <tr class="guestrow" id=>
+                <tr class="guestrow" data-id="{{ $item->id }}">
                     <td>{{ $item->first_name }}</td>
                     <td>{{ $item->last_name }}</td>
                     <td>{{ $item->married_name }}</td>
-                    <td>
-                        <div class="action-col">
-                            <button class="btn btn-primary btn-xs showdetail" data-id="{{ $item->id }}"</button>
-                                Show Detail
-                            </button>
-                            <a href="{{ url('guests/' . $item->id ) }}">
-                                <button type="submit" class="btn btn-info btn-xs">Full Detail</button>
-                            </a>
+                    <td class="noclick">
+                        <div class="btn-group">
+                          <button type="button" class="btn dropdown-toggle {{ $item->statusColor() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ $item->status }} <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="set_status" data-id="{{ $item->id }}" href="#">Unknown</a></li>
+                            <li><a class="set_status bg-success" data-id="{{ $item->id }}" href="#">Attending</a></li>
+                            <li><a class="set_status bg-warning" data-id="{{ $item->id }}" href="#">Not Attending</a></li>
+                            <li><a class="set_status bg-info" data-id="{{ $item->id }}" href="#">Deceased</a></li>
+                          </ul>
                         </div>
                     </td>
                 </tr>
                 <tr class="hiderow detailrow">
-                    <td id="detail{{ $item->id }}" colspan="3">
-                    </td>
-                    <td class="button-holder">
-                        <button class="btn btn-warning btn-xs save-button">Save</button>
+                    <td id="detail{{ $item->id }}" colspan="4">
                     </td>
                 </tr>
             @endforeach

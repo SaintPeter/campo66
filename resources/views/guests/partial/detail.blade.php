@@ -1,31 +1,72 @@
 {!! Form::model($guest, [
     'method' => 'PATCH',
     'url' => ['guests', $guest->id],
-    'class' => 'form-inline'
+    'class' => 'form'
 ]) !!}
 
 <div class="form-group">
-    <label for="address1">Address 1:</label>
+<div class="col-md-6 col-sm-12">
+    <label for="address1">Address 1</label>
     {!! Form::text('address1', null, [ 'class' => 'form-control' ]) !!}
+    </div>
 </div>
 <div class="form-group">
-    <label for="address2">Address 2:</label>
+    <div class="col-md-6 col-sm-12">
+    <label for="address2">Address 2</label>
     {!! Form::text('address2', null, [ 'class' => 'form-control' ]) !!}
+    </div>
 </div>
 <div class="form-group">
-    <label for="city">City:</label>
+    <div class="col-md-6 col-sm-12">
+    <label for="city">City</label>
     {!! Form::text('city', null, [ 'class' => 'form-control' ]) !!}
+    </div>
 </div>
 <div class="form-group">
-    <label for="state">State:</label>
+    <div class="col-md-2 col-sm-6">
+    <label for="state">State</label>
     {!! Form::text('state', null, [ 'class' => 'form-control' ]) !!}
+    </div>
 </div>
 <div class="form-group">
-    <label for="zip">Zip:</label>
+    <div class="col-md-4 col-sm-6">
+    <label for="zip">Zip</label>
     {!! Form::text('zip', null, [ 'class' => 'form-control' ]) !!}
+    </div>
 </div>
+<hr style="margin: 5px 5px;">
+<div class="col-xs-12">&nbsp;</div>
+@for($i = 1; $i < 4; $i++)
+<div class="form-group margin">
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <label for="phone{{ $i }}">Phone {{ $i }}</label>
+        {!! Form::text('phone' . $i, null, [ 'class' => 'form-control' ]) !!}
+    </div>
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <label for="phone{{ $i }}type">Type {{ $i }}</label>
+        <div class="input-group">
+            {!! Form::text('phone' . $i . 'type', null, [ 'class' => 'form-control' ]) !!}
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a class="phonetype" href="#">Home</a></li>
+                    <li><a class="phonetype" href="#">Work</a></li>
+                    <li><a class="phonetype" href="#">Mobile</a></li>
+                </ul>
+            </div><!-- /btn-group -->
+        </div>
+    </div>
+</div>
+@endfor
 
+<div class="form-group">
+    <div class="col-sm-12">
+        <button type="submit" class="btn btn-warning save-button">Update</button>
 
-
+        <a href="{{ url('guests/' . $guest->id ) }}">
+            <button type="submit" class="btn btn-info">Full Detail</button>
+        </a>
+    </div>
+</div>
 
 {!! Form::close() !!}
