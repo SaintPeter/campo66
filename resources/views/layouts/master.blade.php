@@ -40,11 +40,10 @@
 				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
 					@else
 					    <li><a href="{{ route('guests.index') }}">Guests</a></li>
 						<li><a href="#">{{ Auth::user()->name }}</a></li>
-						<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
 				</ul>
 			</div>
