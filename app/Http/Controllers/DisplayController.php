@@ -20,7 +20,7 @@ class DisplayController extends Controller
     public function email(Request $request) {
         // campolindo66@gmail.com
         Mail::send('emails.contact', $request->all(), function($message) {
-           $message->to('rex@schraders.org', 'Rex Schrader')->subject('Contact Form E-mail');
+           $message->to('campolindo66@gmail.com', 'Reunion Coordinators')->subject('Contact Form E-mail');
         });
 
         return redirect('contact')->with('message', 'E-mail Sent!  Thank you!');
