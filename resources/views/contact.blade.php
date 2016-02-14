@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
+@include('partials.flash')
 {!! Form::open([ 'url' => route('email'), 'method' => 'post']) !!}
 <div class="col-md-2"></div>
 <div class="col-md-8">

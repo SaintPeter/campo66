@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
+<h1>Class List</h1>
 <ul>
 @foreach($guests as $guest)
     <li>

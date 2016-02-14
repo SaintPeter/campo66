@@ -1,3 +1,92 @@
+@font-face {
+    font-family: Varsity;
+    src: url(varsity_classic.TTF);
+}
+
+/* Site Wide */
+
+body > .container {
+    position:relative;
+    margin-top:10px;
+}
+
+.navbar {
+    background-color: #555;
+    color: white !important;
+    border-bottom: 4px solid #0e175c;
+    padding-top: 5px;
+}
+
+.navbar-default a {
+    color: white !important;
+}
+
+.navbar-default a:hover {
+    background: #999 !important;
+}
+
+.navbar-brand img {
+    display: inline-block;
+    margin-right: 5px;
+    height: 35px;
+    margin-top: -10px;
+}
+
+
+.navbar-default span:not(.sr-only) {
+    background:#fff;
+}
+
+h1 {
+    font-family: Varsity;
+    font-weight: bold;
+    color: #333;
+    font-size: 45px;
+    margin-bottom: 50px;
+}
+.jumbotron {
+    position:relative;
+    background: none;
+}
+.jumbotron h1 {
+    margin-bottom: 10px;
+    color: #FFF;
+    font-weight: normal;
+    -webkit-text-stroke-color: #ac1608;
+    -webkit-text-stroke-width: 2px;
+}
+
+.jumbotron h2 {
+    color: #0e175c;
+}
+
+.jumbotron::before {
+    content:"";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    position: absolute;
+    border-radius: 15px;
+    border: 4px #0e175c solid;
+}
+
+.jumbotron::after {
+    content:"";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    position: absolute;
+    background-image: url(../images/building.jpg);
+    background-repeat: none;
+    background-size: cover;
+    opacity: 0.3;
+    border-radius: 15px;
+}
+
 /* guests index */
 .hiderow td {
     padding: 0px !important;
@@ -56,3 +145,39 @@
 .found16 {
     cursor: pointer;
 }
+
+.add-guest {
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+
+
+/*  Answers Page */
+
+.guestName {
+    text-align:baseline;
+    margin:50px 0 15px;
+    padding-bottom:20px;
+}
+.guestName h2 {
+    float:left;
+    margin:0;
+    line-height:20px
+}
+.guestName em {
+    float:right;
+    line-height:30px;
+}
+.answers hr {
+ clear:both;
+}
+.answers p {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    background: #DFDFDF;
+    border-radius: 5px;
+    display: block;
+    line-height: 2em;
+}
+

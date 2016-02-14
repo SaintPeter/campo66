@@ -11,18 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
 
-Route::get('/classlist', 'DisplayController@classlist')->name('classlist');
-Route::get('/answers/{id}', 'DisplayController@answers')->name('answers');
+    Route::get('/home', 'HomeController@index');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
 
-Route::post('/email', 'DisplayController@email')->name('email');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+
+    Route::get('/classlist', 'DisplayController@classlist')->name('classlist');
+    Route::get('/answers/{id}', 'DisplayController@answers')->name('answers');
+
+    Route::get('/contact', function () {
+        return view('contact');
+    })->name('contact');
+
+    Route::post('/email', 'DisplayController@email')->name('email');
+});
+
+
+
 
 
 /*
@@ -36,7 +50,7 @@ Route::post('/email', 'DisplayController@email')->name('email');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('/guests', 'GuestsController');
     Route::get('/guests/detail/{id}', 'GuestsController@detail')
         ->name('guests.detail');
@@ -45,3 +59,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/guests/toggle16/{id?}', 'GuestsController@toggle16')
         ->name('guests.toggle16');
 });
+
+

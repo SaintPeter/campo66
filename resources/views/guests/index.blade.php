@@ -86,7 +86,8 @@ function saveData(e) {
 @endsection
 
 @section('content')
-    <h1>Guests <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm">Add New Guest</a></h1>
+    <h1>Guests</h1>
+    <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add New Guest</a>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>
