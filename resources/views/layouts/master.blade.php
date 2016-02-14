@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Campoliondo High School Class of 1966</title>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet"> --}}
 	<link href="css/main.css" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -26,11 +27,14 @@
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="#">Campoliondo High School Class of 1966</a>
+	            <a class="navbar-brand" href="/">Campoliondo High School Class of 1966</a>
 	        </div>
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
+				        <li><a href="{{ route('home') }}">Home</a></li>
+				        <li><a href="{{ route('classlist') }}">Class List</a></li>
+				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 						<li><a href="{{ url('/auth/register') }}">Register</a></li>

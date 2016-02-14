@@ -1,7 +1,8 @@
 {!! Form::model($guest, [
     'method' => 'PATCH',
     'url' => ['guests', $guest->id],
-    'class' => 'form'
+    'class' => 'form',
+    'id' => 'form' . $guest->id
 ]) !!}
 
 <div class="form-group">
@@ -59,14 +60,46 @@
 </div>
 @endfor
 
+<div class="col-xs-6 md-hidden">
+&nbsp;
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-sm-12 col-md-9">
+        <label for="notes">Notes</label>
+        {!! Form::textarea('notes', null, [ 'class' => 'form-control', 'rows' => '4' ]) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-3 col-sm-6">
+    <label for="email1">Email 1</label>
+    {!! Form::text('email1', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-3 col-sm-6">
+    <label for="email2">Email 2</label>
+    {!! Form::text('email1', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="col-xs-12">&nbsp;</div>
+
 <div class="form-group">
     <div class="col-sm-12">
-        <button type="submit" class="btn btn-warning save-button">Update</button>
+<button type="submit" data-id="{{ $guest->id }}"class="btn btn-warning save-button">Update</button>
 
         <a href="{{ url('guests/' . $guest->id ) }}">
             <button type="submit" class="btn btn-info">Full Detail</button>
         </a>
     </div>
+
+@include('partials.flash')
+
 </div>
 
 {!! Form::close() !!}

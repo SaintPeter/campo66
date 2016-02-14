@@ -5,6 +5,8 @@
 $('.guestrow > td:not(.noclick)').on('click', toggleRow);
 $('.set_status').on('click', setStatus);
 $(document).on('click', '.phonetype', setPhoneType);
+$(document).on('click', '.found16', toggle16);
+$(document).on('click', '.save-button', saveData);
 
 function toggleRow(e) {
     e.preventDefault();
@@ -54,6 +56,32 @@ function setPhoneType(e) {
     $(this).parent().parent().parent().prev().val( $(this).text() );
 }
 
+function toggle16(e) {
+    var item = $(this);
+    var id = item.closest('.guestrow').data('id');
+    $.get('{{ route('guests.toggle16') }}/' + id, function(data) {
+        if(data === "true") {
+            item.removeClass('glyphicon-remove').addClass('glyphicon-ok');
+            item.parent().removeClass('notfound').addClass('found');
+        } else {
+            item.removeClass('glyphicon-ok').addClass('glyphicon-remove');
+            item.parent().removeClass('found').addClass('notfound');
+        }
+    });
+}
+
+function saveData(e) {
+    e.preventDefault();
+
+    var id = $(this).data('id');
+    var form = $('#form' + id);
+    var data = form.serialize();
+
+    $.post(form.attr('action'), data, function(newDetail) {
+        $("#detail" + id).html(newDetail);
+    });
+}
+
 
 @endsection
 
@@ -66,6 +94,9 @@ function setPhoneType(e) {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Married Name</th>
+                    <th class="text-center">Notes</th>
+                    <th class="text-center">Found '96</th>
+                    <th class="text-center">Found '16</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -75,9 +106,36 @@ function setPhoneType(e) {
                     <td>{{ $item->first_name }}</td>
                     <td>{{ $item->last_name }}</td>
                     <td>{{ $item->married_name }}</td>
-                    <td class="noclick">
+                    <td class="notes-col">
+                        @if(!empty(trim($item->notes)))
+                            <i class="fa fa-file-text-o fa-lg"></i>
+                        @endif
+                    </td>
+                    <td class="found-col noclick">
+                        @if($item->found96)
+                            <span class="found">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </span>
+                        @else
+                            <span class="notfound">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </span>
+                        @endif
+                    </td>
+                    <td class="found-col noclick">
+                        @if($item->found16)
+                            <span class="found">
+                                <span class="glyphicon glyphicon-ok found16" title="Click To Toggle" aria-hidden="true"></span>
+                            </span>
+                        @else
+                            <span class="notfound">
+                                <span class="glyphicon glyphicon-remove found16" title="Click To Toggle" aria-hidden="true"></span>
+                            </span>
+                        @endif
+                    </td>
+                    <td class="status-col noclick">
                         <div class="btn-group">
-                          <button type="button" class="btn dropdown-toggle {{ $item->statusColor() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button type="button" class="btn btn-sm dropdown-toggle {{ $item->statusColor() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ $item->status }} <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu">
@@ -90,7 +148,7 @@ function setPhoneType(e) {
                     </td>
                 </tr>
                 <tr class="hiderow detailrow">
-                    <td id="detail{{ $item->id }}" colspan="4">
+                    <td id="detail{{ $item->id }}" colspan="7">
                     </td>
                 </tr>
             @endforeach

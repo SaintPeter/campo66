@@ -96,6 +96,22 @@ class GuestsController extends Controller
     }
 
     /**
+    * Toggle found16 status
+    *
+    * @param  int  $id
+    *
+    * @return true or 404
+    */
+    public function toggle16($id)
+    {
+        $guest = Guest::findOrFail($id);
+        $guest->found16 = !$guest->found16;
+        $guest->save();
+
+        return $guest->found16 ? 'true' : 'false';
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -122,9 +138,9 @@ class GuestsController extends Controller
         $guest = Guest::findOrFail($id);
         $guest->update($request->all());
 
-        Session::flash('flash_message', 'Guest updated!');
+        Session::flash('message', 'Guest Saved!');
 
-        return redirect('guests');
+        return view('guests.partial.detail', compact('guest'));
     }
 
     /**
