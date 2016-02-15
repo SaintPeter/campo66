@@ -8,7 +8,7 @@
     <meta property="og:type"        content="website" />
     <meta property="og:title"       content="Campolindo High School Reunion 1966" />
     <meta property="og:description" content="Website for the Campolindo High School Reunion - Class of 1966" />
-    <meta property="og:image"       content="http://campolindoreunion1966.com/images/facebook_title.png" />
+    <meta property="og:image"       content="http://campolindoreunion1966.com/images/facebook_title1.png" />
 
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:site"        content="@rexitas" />
