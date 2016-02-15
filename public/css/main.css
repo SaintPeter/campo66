@@ -37,6 +37,15 @@ body > .container {
     background:#fff;
 }
 
+ul.share-buttons{
+  list-style: none;
+  padding: 0;
+}
+
+ul.share-buttons li{
+  display: inline;
+}
+
 h1 {
     font-family: Varsity;
     font-weight: bold;
@@ -44,6 +53,13 @@ h1 {
     font-size: 45px;
     margin-bottom: 50px;
 }
+
+.footer {
+    text-align: center;
+}
+
+/* -- Front Page -- */
+
 .jumbotron {
     position:relative;
     background: none;

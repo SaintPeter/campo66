@@ -69,9 +69,16 @@
 
 	<hr/>
 
-	<div class="container">
-	    &copy; {{ date('Y') }}. Created by Rex "SaintPeter" Schrader
+	<div class="container footer">
+    	<ul class="share-buttons">
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&t=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966" title="Share on Facebook" target="_blank"><img src="images/flat_web_icon_set/color/Facebook.png"></a></li>
+          <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&text=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966:%20http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Tweet"><img src="images/flat_web_icon_set/color/Twitter.png"></a></li>
+          <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on Google+"><img src="images/flat_web_icon_set/color/Google+.png"></a></li>
+          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&title=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966&summary=&source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on LinkedIn"><img src="images/flat_web_icon_set/color/LinkedIn.png"></a></li>
+        </ul>
+	    Created by <a href="mailto: webmaster@campolindoreunion1966.com?Subject=Campolindo Reunion Website">Rex "SaintPeter" Schrader</a> &copy; {{ date('Y') }}
 	    <br/>
+
 	</div>
 
 	<!-- Scripts -->
