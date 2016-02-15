@@ -4,6 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:url"         content="http://campolindoreunion1966.com" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Campolindo HS Reunion 1966" />
+    <meta property="og:description" content="Website for the Campolindo High School Reunion - Class of 1966" />
+    <meta property="og:image"       content="http://campolindoreunion1966.com/images/facebook_title.png" />
+
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:site"        content="@rexitas" />
+    <meta name="twitter:title"       content="Campolindo HS Reunion 1966" />
+    <meta name="twitter:description" content="Website for the Campolindo High School Reunion - Class of 1966" />
+    <meta name="twitter:image"       content="http://campolindoreunion1966.com/images/twitter_title.png" />
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<title>Campoliondo High School Class of 1966</title>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
