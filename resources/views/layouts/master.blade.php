@@ -51,11 +51,11 @@
 				        <li><a href="{{ route('classlist') }}">Class List</a></li>
 				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
+						<li><a href="{{ url('auth/login') }}">Login</a></li>
 					@else
 					    <li><a href="{{ route('guests.index') }}">Guests</a></li>
 						<li><a href="#">{{ Auth::user()->name }}</a></li>
-						<li><a href="{{ url('/logout') }}">Logout</a></li>
+						<li><a href="{{ url('auth/logout') }}">Logout</a></li>
 					@endif
 				</ul>
 			</div>
@@ -64,6 +64,9 @@
 	</nav>
 
 	<div class="container">
+	    @if(!preg_match('/password|welcome/', $view_name))
+	        {!! Breadcrumbs::render() !!}
+	    @endif
 		@yield('content')
 	</div>
 
@@ -84,6 +87,7 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.livefilter.min.js"></script>
 	<script type="text/javascript">
 	    @yield('script')
 	</script>

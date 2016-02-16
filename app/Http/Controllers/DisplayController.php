@@ -27,10 +27,7 @@ class DisplayController extends Controller
 
     }
 
-    public function answers($id) {
-
-        $guest = Guest::findOrFail($id);
-
+    public function answers(Guest $guest) {
         return view('answers', compact('guest'));
     }
 

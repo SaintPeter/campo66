@@ -28,4 +28,26 @@ class Guest extends Model
 
         return $colors[$this->attributes['status']];
     }
+
+    public function answerLength() {
+        $answers = trim($this->children_names .
+            $this->education .
+            $this->employment.
+            $this->hobbies .
+            $this->unexpected_event .
+            $this->greatest_accomplishment .
+            $this->travel .
+            $this->notdone);
+        return strlen($answers);
+    }
+
+    public function getFullNameAttribute() {
+        $full_name = $this->first_name . ' ';
+        if(!empty($this->married_name)) {
+            $full_name .= '(' . $this->married_name . ') ';
+        }
+        $full_name .= $this->last_name;
+
+        return $full_name;
+    }
 }

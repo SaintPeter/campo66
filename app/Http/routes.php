@@ -1,22 +1,33 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+/* ------- Public Routes ----------- */
+Route::model('guest', 'App\Guest');
+
+View::composer('*', function($view){
+
+    View::share('view_name', $view->getName());
+
+});
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::controllers([
-        'auth' => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
+    Route::controller('password', 'Auth\PasswordController', [
+        'showResetForm' => 'pass.blah',
+        'getReset' => 'pass.reset',
+        'postReset' => 'pass.reset',
+        'getEmail' => 'pass.email',
+        'postEmail' => 'pass.email',
+        'getBroker' => 'pass.broker'
+
+    ]);
+
+    Route::controller('auth', 'Auth\AuthController', [
+      'getRegister' => 'auth.register',
+      'getLogin' => 'auth.login',
+      'postRegister' => 'auth.register',
+      'postLogin' => 'auth.login',
+      'postLogout' => 'auth.logout',
     ]);
 
     Route::get('/', function () {
@@ -24,7 +35,7 @@ Route::group(['middleware' => 'web'], function () {
     })->name('home');
 
     Route::get('/classlist', 'DisplayController@classlist')->name('classlist');
-    Route::get('/answers/{id}', 'DisplayController@answers')->name('answers');
+    Route::get('/answers/{guest}', 'DisplayController@answers')->name('answers');
 
     Route::get('/contact', function () {
         return view('contact');
@@ -33,21 +44,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/email', 'DisplayController@email')->name('email');
 });
 
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
+/* ------- Administrator/Registered User Only Routes ----------- */
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('/guests', 'GuestsController');
     Route::get('/guests/detail/{id}', 'GuestsController@detail')
