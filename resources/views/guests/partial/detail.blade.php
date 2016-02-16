@@ -60,11 +60,18 @@
 </div>
 @endfor
 
-<div class="col-xs-6 md-hidden">
+<div class="form-group">
+    <div class="col-md-3 col-sm-6">
+    <label for="dlnum">Driver's License Number</label>
+    {!! Form::text('dlnum', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="col-xs-6 hidden-sm">
 &nbsp;
 </div>
 
-
+<div class="col-xs-12">&nbsp;</div>
 
 <div class="form-group">
     <div class="col-sm-12 col-md-9">

@@ -20,7 +20,7 @@ class GuestsController extends Controller
      */
     public function index()
     {
-        $guests = Guest::orderBy('last_name')->paginate(15);
+        $guests = Guest::orderBy('last_name')->get();
 
         return view('guests.index', compact('guests'));
     }
