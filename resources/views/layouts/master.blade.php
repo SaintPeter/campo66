@@ -55,7 +55,7 @@
 					@else
 					    <li><a href="{{ route('guests.index') }}">Guests</a></li>
 						<li><a href="#">{{ Auth::user()->name }}</a></li>
-						<li><a href="{{ url('auth/logout') }}">Logout</a></li>
+						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
 				</ul>
 			</div>
@@ -64,7 +64,7 @@
 	</nav>
 
 	<div class="container">
-	    @if(!preg_match('/password|welcome/', $view_name))
+	    @if(!preg_match('/password|auth|welcome/', $view_name))
 	        {!! Breadcrumbs::render() !!}
 	    @endif
 		@yield('content')
