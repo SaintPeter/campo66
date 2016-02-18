@@ -202,3 +202,16 @@ h1 {
     line-height: 2em;
 }
 
+/* Class List */
+.classlist li {
+    list-style-type: none;
+}
+
+.classlist a {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.classlist a:hover {
+    text-decoration: underline;
+}

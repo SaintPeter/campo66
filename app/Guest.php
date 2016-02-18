@@ -50,4 +50,20 @@ class Guest extends Model
 
         return $full_name;
     }
+
+    public function getEditedStatusAttribute() {
+        if($this->attributes['status'] != "Unknown") {
+            return $this->attributes['status'];
+        }
+        return '';
+    }
+
+    public function getIsDeceasedAttribute() {
+        if($this->attributes['status'] == "Deceased") {
+            return 'Deceased';
+        }
+        return '';
+    }
+
+
 }

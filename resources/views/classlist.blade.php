@@ -17,18 +17,17 @@ $('#filter').livefilter({selector:'ul li'}).focus();
         </div>
         </div>
 
-        <ul>
+        <ul class="classlist">
         @foreach($guests as $guest)
             <li>
                 <a href="{{ route('answers', [ 'id' => $guest->id ]) }}">
-                    {{ $guest->first_name }}
-                    @if(!empty($guest->married_name))
-                        ({{ $guest->married_name }})
-                    @endif
-                    {{ $guest->last_name }}
+                    {{ $guest->full_name }}
                 </a>
                 @if($guest->answerLength())
                     <i class="fa fa-file-text-o" title="Questionare Answers from 1986/1996"></i>
+                @endif
+                @if($guest->edited_status)
+                    &nbsp;&mdash;&nbsp;<strong><em>{{ $guest->edited_status }}</em></strong>
                 @endif
             </li>
         @endforeach
