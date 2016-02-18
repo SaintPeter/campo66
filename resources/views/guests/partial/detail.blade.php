@@ -82,15 +82,15 @@
 
 <div class="form-group">
     <div class="col-md-3 col-sm-6">
-    <label for="email1">Email 1</label>
-    {!! Form::text('email1', null, [ 'class' => 'form-control' ]) !!}
+    <label for="email">Email 1</label>
+    {!! Form::text('email', null, [ 'class' => 'form-control' ]) !!}
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-3 col-sm-6">
     <label for="email2">Email 2</label>
-    {!! Form::text('email1', null, [ 'class' => 'form-control' ]) !!}
+    {!! Form::text('email2', null, [ 'class' => 'form-control' ]) !!}
     </div>
 </div>
 
