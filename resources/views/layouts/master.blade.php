@@ -41,7 +41,7 @@
 	            </button>
 	            <a class="navbar-brand" href="/">
 	                <img src="/images/campolindo-small.png">
-	                Campolindo High School Class of 1966
+	                Campolindo High - Class of 1966
 	            </a>
 	        </div>
 
@@ -54,7 +54,6 @@
 						<li><a href="{{ url('auth/login') }}">Login</a></li>
 					@else
 					    <li><a href="{{ route('guests.index') }}">Guests</a></li>
-						<li><a href="#">{{ Auth::user()->name }}</a></li>
 						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
 				</ul>
@@ -64,6 +63,7 @@
 	</nav>
 
 	<div class="container">
+
 	    @if(!preg_match('/password|auth|welcome/', $view_name))
 	        {!! Breadcrumbs::render() !!}
 	    @endif
