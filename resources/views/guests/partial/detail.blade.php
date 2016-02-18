@@ -98,11 +98,7 @@
 
 <div class="form-group">
     <div class="col-sm-12">
-<button type="submit" data-id="{{ $guest->id }}"class="btn btn-warning save-button">Update</button>
-
-        <a href="{{ url('guests/' . $guest->id ) }}">
-            <button type="submit" class="btn btn-info">Full Detail</button>
-        </a>
+        <button type="submit" data-id="{{ $guest->id }}"class="btn btn-warning save-button">Update</button>
     </div>
 
 @include('partials.flash')
