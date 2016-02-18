@@ -90,13 +90,16 @@ $('#filter').livefilter({selector:'table tr.guestrow'}).focus();
 @section('content')
     <h1>Guests</h1>
     <div class="row">
-        <div class="col-sm-12 clearfix">
-        <div class="col-ms-4 col-xs-6">
+        <div class="col-sm-12 clearfix ">
+        <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add New Guest</a>
+        <div class="col-md-3 col-sm-4 col-xs-6 filter-holder">
             {!! Form::text('filter', null, [ 'id' => 'filter', 'class' => 'form-control', 'placeholder' => 'Bob Jones' ]) !!}
         </div>
+
+
         </div>
         </div>
-    <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add New Guest</a>
+
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>

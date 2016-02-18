@@ -26,7 +26,11 @@ class Guest extends Model
             "Deceased"      => "btn-info"
         ];
 
-        return $colors[$this->attributes['status']];
+        if(array_key_exists($this->attributes['status'], $colors)) {
+            return $colors[$this->attributes['status']];
+        } else {
+            return "btn-default";
+        }
     }
 
     public function answerLength() {

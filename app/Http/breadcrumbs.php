@@ -27,6 +27,13 @@ Breadcrumbs::register('guests.index', function($breadcrumbs)
     $breadcrumbs->push('Guests', route('guests.index'));
 });
 
+// Home > Guests
+Breadcrumbs::register('guests.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('guests.index');
+    $breadcrumbs->push('Add Guest', route('guests.create'));
+});
+
 // Home > Contact Us
 Breadcrumbs::register('contact', function($breadcrumbs)
 {
