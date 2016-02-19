@@ -6,6 +6,28 @@
 ]) !!}
 
 <div class="form-group">
+    <div class="col-md-4 col-sm-12">
+        <label for="first_name">First Name</label>
+        {!! Form::text('first_name', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 col-sm-12">
+        <label for="last_name">Last Name</label>
+        {!! Form::text('last_name', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-4 col-sm-12">
+        <label for="married_name">Married Name</label>
+        {!! Form::text('married_name', null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
 <div class="col-md-6 col-sm-12">
     <label for="address1">Address 1</label>
     {!! Form::text('address1', null, [ 'class' => 'form-control' ]) !!}

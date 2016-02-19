@@ -78,7 +78,14 @@ function saveData(e) {
     var data = form.serialize();
 
     $.post(form.attr('action'), data, function(newDetail) {
-        $("#detail" + id).html(newDetail);
+        var detail = $("#detail" + id);
+        detail.html(newDetail);
+        var row = $('.guestrow[data-id='+ id + ']');
+
+        row.find('.first_name').text(detail.find("[name=first_name]").val());
+        row.find('.last_name').text(detail.find("[name=last_name]").val());
+        row.find('.married_name').text(detail.find("[name=married_name]").val());
+
     });
 }
 
@@ -91,7 +98,7 @@ $('#filter').livefilter({selector:'table tr.guestrow'}).focus();
     <h1>Guests</h1>
     <div class="row">
         <div class="col-sm-12 clearfix ">
-        <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add New Guest</a>
+        <a href="{{ url('guests/create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add Classmate</a>
         <div class="col-md-3 col-sm-4 col-xs-6 filter-holder">
             {!! Form::text('filter', null, [ 'id' => 'filter', 'class' => 'form-control', 'placeholder' => 'Bob Jones' ]) !!}
         </div>
@@ -116,9 +123,9 @@ $('#filter').livefilter({selector:'table tr.guestrow'}).focus();
             <tbody>
             @foreach($guests as $item)
                 <tr class="guestrow" data-id="{{ $item->id }}">
-                    <td>{{ $item->first_name }}</td>
-                    <td>{{ $item->last_name }}</td>
-                    <td>{{ $item->married_name }}</td>
+                    <td class="first_name">{{ $item->first_name }}</td>
+                    <td class="last_name">{{ $item->last_name }}</td>
+                    <td class="married_name">{{ $item->married_name }}</td>
                     <td class="notes-col">
                         @if(!empty(trim($item->notes)))
                             <i class="fa fa-file-text-o fa-lg"></i>
