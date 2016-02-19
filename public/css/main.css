@@ -96,10 +96,12 @@ h1 {
     bottom: 0;
     z-index: -1;
     position: absolute;
-    background-image: url(../images/building.jpg);
-    background-repeat: none;
+    background: url(../images/building.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    opacity: 0.3;
+    opacity: 0.8;
     border-radius: 15px;
 }
 
