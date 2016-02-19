@@ -181,7 +181,7 @@ h1 {
 /*  Answers Page */
 
 .guestName {
-    text-align:baseline;
+    text-align: baseline;
     margin:50px 0 15px;
     padding-bottom:20px;
 }
@@ -208,9 +208,6 @@ h1 {
 }
 
 /* Class List */
-.classlist li {
-    list-style-type: none;
-}
 
 .classlist a {
     text-decoration: none;
@@ -219,4 +216,23 @@ h1 {
 
 .classlist a:hover {
     text-decoration: underline;
+}
+
+.classlist .not_found {
+   margin-left: 8px;
+}
+
+.not_found {
+   padding: 1px 2px;
+   border-radius: 5px;
+   background: #000066;
+   color: white;
+}
+
+.filter-holder {
+    margin-left: 0;
+}
+
+#filter {
+    margin-bottom: 5px;
 }
