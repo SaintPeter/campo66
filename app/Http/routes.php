@@ -46,13 +46,13 @@ Route::group(['middleware' => 'web'], function () {
 
 /* ------- Administrator/Registered User Only Routes ----------- */
 Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::resource('/guests', 'GuestsController');
-    Route::get('/guests/detail/{id}', 'GuestsController@detail')
-        ->name('guests.detail');
-    Route::get('/guests/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
-        ->name('guests.setstatus');
-    Route::get('/guests/toggle16/{id?}', 'GuestsController@toggle16')
-        ->name('guests.toggle16');
+    Route::resource('/classmates', 'GuestsController');
+    Route::get('/classmates/detail/{id}', 'GuestsController@detail')
+        ->name('classmates.detail');
+    Route::get('/classmates/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
+        ->name('classmates.setstatus');
+    Route::get('/classmates/toggle16/{id?}', 'GuestsController@toggle16')
+        ->name('classmates.toggle16');
 });
 
 

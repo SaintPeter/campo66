@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet"> --}}
 	<link href="/css/main.css" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <link href="/css/jquery-confirm.css" rel="stylesheet">
 	<style>
 		body {
 			padding-top: 70px;
@@ -47,13 +47,12 @@
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-				        <li><a href="{{ route('home') }}">Home</a></li>
 				        <li><a href="{{ route('classlist') }}">Class List</a></li>
 				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 					@if (Auth::guest())
 						<li><a href="{{ url('auth/login') }}">Login</a></li>
 					@else
-					    <li><a href="{{ route('guests.index') }}">Guests</a></li>
+					    <li><a href="{{ route('classmates.index') }}">Classmates</a></li>
 						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
 				</ul>
@@ -74,10 +73,10 @@
 
 	<div class="container footer">
     	<ul class="share-buttons">
-          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&t=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966" title="Share on Facebook" target="_blank"><img src="images/flat_web_icon_set/color/Facebook.png"></a></li>
-          <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&text=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966:%20http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Tweet"><img src="images/flat_web_icon_set/color/Twitter.png"></a></li>
-          <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on Google+"><img src="images/flat_web_icon_set/color/Google+.png"></a></li>
-          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&title=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966&summary=&source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on LinkedIn"><img src="images/flat_web_icon_set/color/LinkedIn.png"></a></li>
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&t=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966" title="Share on Facebook" target="_blank"><img src="/images/flat_web_icon_set/color/Facebook.png"></a></li>
+          <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&text=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966:%20http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Tweet"><img src="/images/flat_web_icon_set/color/Twitter.png"></a></li>
+          <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on Google+"><img src="/images/flat_web_icon_set/color/Google+.png"></a></li>
+          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&title=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966&summary=&source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Share on LinkedIn"><img src="/images/flat_web_icon_set/color/LinkedIn.png"></a></li>
         </ul>
 	    Created by <a href="mailto: webmaster@campolindoreunion1966.com?Subject=Campolindo Reunion Website">Rex "SaintPeter" Schrader</a> &copy; {{ date('Y') }}
 	    <br/>
@@ -85,9 +84,10 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.livefilter.min.js"></script>
+	<script src="/js/jquery-confirm.min.js"></script>
 	<script type="text/javascript">
 	    @yield('script')
 	</script>

@@ -21,17 +21,17 @@ Breadcrumbs::register('answers', function($breadcrumbs, $guest)
 });
 
 // Home > Guests
-Breadcrumbs::register('guests.index', function($breadcrumbs)
+Breadcrumbs::register('classmates.index', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Guests', route('guests.index'));
+    $breadcrumbs->push('Classmates', route('classmates.index'));
 });
 
 // Home > Guests
-Breadcrumbs::register('guests.create', function($breadcrumbs)
+Breadcrumbs::register('classmates.create', function($breadcrumbs)
 {
-    $breadcrumbs->parent('guests.index');
-    $breadcrumbs->push('Add Guest', route('guests.create'));
+    $breadcrumbs->parent('classmates.index');
+    $breadcrumbs->push('Add Classmate', route('classmates.create'));
 });
 
 // Home > Contact Us

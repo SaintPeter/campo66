@@ -22,7 +22,7 @@ class GuestsController extends Controller
     {
         $guests = Guest::orderBy('last_name')->get();
 
-        return view('guests.index', compact('guests'));
+        return view('classmates.index', compact('guests'));
     }
 
     /**
@@ -32,7 +32,7 @@ class GuestsController extends Controller
      */
     public function create()
     {
-        return view('guests.create');
+        return view('classmates.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class GuestsController extends Controller
 
         Session::flash('flash_message', 'Guest added!');
 
-        return redirect('guests');
+        return redirect('classmates');
     }
 
     /**
@@ -61,7 +61,7 @@ class GuestsController extends Controller
     {
         $guest = Guest::findOrFail($id);
 
-        return view('guests.show', compact('guest'));
+        return view('classmates.show', compact('guest'));
     }
 
     /**
@@ -75,7 +75,7 @@ class GuestsController extends Controller
     {
     $guest = Guest::findOrFail($id);
 
-    return view('guests.partial.detail', compact('guest'));
+    return view('classmates.partial.detail', compact('guest'));
     }
 
     /**
@@ -122,7 +122,7 @@ class GuestsController extends Controller
     {
         $guest = Guest::findOrFail($id);
 
-        return view('guests.edit', compact('guest'));
+        return view('classmates.edit', compact('guest'));
     }
 
     /**
@@ -140,7 +140,7 @@ class GuestsController extends Controller
 
         Session::flash('message', 'Guest Saved!');
 
-        return view('guests.partial.detail', compact('guest'));
+        return view('classmates.partial.detail', compact('guest'));
     }
 
     /**
@@ -156,7 +156,7 @@ class GuestsController extends Controller
 
         Session::flash('flash_message', 'Guest deleted!');
 
-        return redirect('guests');
+        return redirect('classmates');
     }
 
 }
