@@ -1,6 +1,6 @@
 {!! Form::model($guest, [
     'method' => 'PATCH',
-    'url' => ['guests', $guest->id],
+    'url' => ['classmates', $guest->id],
     'class' => 'form',
     'id' => 'form' . $guest->id
 ]) !!}
