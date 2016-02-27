@@ -27,6 +27,13 @@ Breadcrumbs::register('classmates.index', function($breadcrumbs)
     $breadcrumbs->push('Classmates', route('classmates.index'));
 });
 
+// Home > Guests > Emails
+Breadcrumbs::register('classmates.emails', function($breadcrumbs)
+{
+    $breadcrumbs->parent('classmates.index');
+    $breadcrumbs->push('E-mails', route('classmates.emails'));
+});
+
 // Home > Guests
 Breadcrumbs::register('classmates.create', function($breadcrumbs)
 {

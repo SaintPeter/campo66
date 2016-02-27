@@ -46,6 +46,8 @@ Route::group(['middleware' => 'web'], function () {
 
 /* ------- Administrator/Registered User Only Routes ----------- */
 Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/classmates/emails', 'GuestsController@emails')
+        ->name('classmates.emails');
     Route::resource('/classmates', 'GuestsController');
     Route::get('/classmates/detail/{id}', 'GuestsController@detail')
         ->name('classmates.detail');

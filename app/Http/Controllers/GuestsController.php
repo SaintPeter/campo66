@@ -26,6 +26,29 @@ class GuestsController extends Controller
     }
 
     /**
+     * Display all of the e-mail addresses.
+     *
+     * @return Response
+     */
+    public function emails()
+    {
+        // Update e-mail dates
+        Guest::where('email', '<>', '')->whereNull('email_date')->update( [ 'email_date' => Carbon::now() ] );
+
+        // List non-blank e-mail dates
+        $guests = Guest::whereNotNull('email_date')->orderBy('email_date', 'desc')->get();
+
+        // Generate a 2d list
+        $mail_list = $guests->reduce( function($acc, $item) {
+            $acc[$item->email_date->format('l, F jS, Y')][] = $item->full_name . ' &lt;' . $item->email  . '&gt;;';
+            return $acc;
+        }, [] );
+
+        return view('classmates.emails', compact('mail_list'));
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -110,6 +133,7 @@ class GuestsController extends Controller
 
         return $guest->found16 ? 'true' : 'false';
     }
+
 
     /**
      * Show the form for editing the specified resource.

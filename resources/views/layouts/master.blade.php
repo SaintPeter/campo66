@@ -88,6 +88,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.livefilter.min.js"></script>
 	<script src="/js/jquery-confirm.min.js"></script>
+	@yield('script_footer')
 	<script type="text/javascript">
 	    @yield('script')
 	</script>

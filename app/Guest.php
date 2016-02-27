@@ -15,8 +15,12 @@ class Guest extends Model
         'email2', 'married', 'married_times', 'children',
         'children_names', 'education', 'employment',
         'hobbies', 'unexpected_event', 'greatest_accomplishment',
-        'travel', 'notdone', 'miles', 'dlnum', 'quest'
+        'travel', 'notdone', 'miles', 'dlnum', 'quest',
+        'email_date'
    ];
+
+    // Date fields automatically converted to Carbon
+    protected $dates = ['created_at', 'updated_at', 'email_date'];
 
     public function statusColor() {
         $colors = [
