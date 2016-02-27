@@ -47,6 +47,7 @@
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
+				        <li><a href="{{ route('activities') }}">Activities</a></li>
 				        <li><a href="{{ route('classlist') }}">Class List</a></li>
 				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 					@if (Auth::guest())

@@ -13,6 +13,13 @@ Breadcrumbs::register('classlist', function($breadcrumbs)
     $breadcrumbs->push('Class List', route('classlist'));
 });
 
+// Home > Activities
+Breadcrumbs::register('activities', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Activities', route('activities'));
+});
+
 // Home > Class List > Guest
 Breadcrumbs::register('answers', function($breadcrumbs, $guest)
 {

@@ -34,6 +34,10 @@ Route::group(['middleware' => 'web'], function () {
         return view('welcome');
     })->name('home');
 
+    Route::get('/activities', function () {
+        return view('activities');
+    })->name('activities');
+
     Route::get('/classlist', 'DisplayController@classlist')->name('classlist');
     Route::get('/answers/{guest}', 'DisplayController@answers')->name('answers');
 
