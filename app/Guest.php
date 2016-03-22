@@ -19,6 +19,11 @@ class Guest extends Model
         'email_date'
    ];
 
+   // For JSON export
+   protected $visible = [
+        'first_name', 'last_name', 'married_name', 'status', 'found16'
+   ];
+
     // Date fields automatically converted to Carbon
     protected $dates = ['created_at', 'updated_at', 'email_date'];
 

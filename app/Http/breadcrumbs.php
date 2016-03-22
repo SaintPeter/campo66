@@ -48,6 +48,13 @@ Breadcrumbs::register('classmates.create', function($breadcrumbs)
     $breadcrumbs->push('Add Classmate', route('classmates.create'));
 });
 
+// Home > Classmates > Status
+Breadcrumbs::register('classmates.status', function($breadcrumbs)
+{
+    $breadcrumbs->parent('classmates.index');
+    $breadcrumbs->push('Classmate Status', route('classmates.status'));
+});
+
 // Home > Contact Us
 Breadcrumbs::register('contact', function($breadcrumbs)
 {

@@ -52,13 +52,15 @@ Route::group(['middleware' => 'web'], function () {
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/classmates/emails', 'GuestsController@emails')
         ->name('classmates.emails');
-    Route::resource('/classmates', 'GuestsController');
     Route::get('/classmates/detail/{id}', 'GuestsController@detail')
         ->name('classmates.detail');
     Route::get('/classmates/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
         ->name('classmates.setstatus');
     Route::get('/classmates/toggle16/{id?}', 'GuestsController@toggle16')
         ->name('classmates.toggle16');
+    Route::get('/classmates/status/{print?}', 'GuestsController@status')
+        ->name('classmates.status');
+    Route::resource('/classmates', 'GuestsController');
 });
 
 

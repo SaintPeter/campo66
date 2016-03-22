@@ -183,4 +183,16 @@ class GuestsController extends Controller
         return redirect('classmates');
     }
 
+    /**
+     * Display list of guests
+     *
+     * @param  int  $print
+     *
+     * @return Response
+     */
+    public function status($print = '') {
+        $guests = Guest::orderBy('last_name')->get();
+
+        return view('classmates.status', compact('guests', 'print'));
+    }
 }

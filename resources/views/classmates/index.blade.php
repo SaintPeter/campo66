@@ -98,6 +98,7 @@ function saveData(e) {
         <div class="col-sm-12 clearfix ">
             <a href="{{ route('classmates.create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add Classmate</a>
             <a href="{{ route('classmates.emails') }}" class="btn btn-info pull-right btn-sm email-list">E-mail List</a>
+            <a href="{{ route('classmates.status') }}" class="btn btn-success pull-right btn-sm status-list">Status Lists</a>
             <div class="col-md-3 col-sm-4 col-xs-6 filter-holder">
                 {!! Form::text('filter', null, [ 'id' => 'filter', 'class' => 'form-control', 'placeholder' => 'Bob Jones' ]) !!}
             </div>
