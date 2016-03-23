@@ -1,6 +1,13 @@
-@extends('layouts.master')
+@extends(($print == "print") ? 'layouts.print' : 'layouts.master')
 
 @section('script')
+var titles = {
+    "attending": "Attending Classmates",
+    "deceased": "Deceased Classmates",
+    "found": "Found Classmates",
+    "notfound": "Not Found Classmates"
+};
+
 // Handlers
 $('.filter-button').on('click', handleFilter);
 $(window).on('popstate', handleNavState);
@@ -9,6 +16,8 @@ $(document).on('ready', handleReady);
 $('#clear-filter').on('click', function(e) {
     window.location = window.location.pathname;
 });
+
+$('#print-button').on('click', handlePrint);
 
 var lastButton;
 
@@ -20,8 +29,26 @@ function handleReady(e) {
     } else {
         doFilter();
     }
+    if(printMode) {
+        if(type) {
+            $('#title').html(titles[type]);
+        } else {
+            $('#title').html("All Classmates");
+        }
+        setTimeout(function () { window.print(); }, 500);
+        window.onfocus = function () { setTimeout(function () { window.close(); }, 500); }
+    }
+
+
 }
 
+// Navigate
+function handlePrint(e) {
+    var newUrl = window.location.pathname + '/print' + window.location.hash;
+    window.open(newUrl);
+}
+
+// Handle navigating back/forward
 function handleNavState(event) {
     $('button').removeClass('active').prop('aria-pressed', false);
     if(event.originalEvent.state) {
@@ -95,23 +122,28 @@ function fullname(obj) {
         return obj.first_name + ' ' + obj.last_name;
     }
 }
-
+var printMode = "{{ $print }}";
 var guests = {!! $guests->toJson() !!};
 
 @endsection
 
 @section('content')
-    <h1>Status List</h1>
-    <div class="row">
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" data-type="attending" class="btn btn-primary filter-button">Attending</button>
-            <button type="button" data-type="deceased" class="btn btn-primary filter-button">Deceased</button>
-            <button type="button" data-type="found" class="btn btn-primary filter-button">Found</button>
-            <button type="button" data-type="notfound" class="btn btn-primary filter-button">Not Found</button>
+    @if($print != "print")
+        <h1>Status List</h1>
+        <div class="row">
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" data-type="attending" class="btn btn-primary filter-button">Attending</button>
+                <button type="button" data-type="deceased" class="btn btn-primary filter-button">Deceased</button>
+                <button type="button" data-type="found" class="btn btn-primary filter-button">Found</button>
+                <button type="button" data-type="notfound" class="btn btn-primary filter-button">Not Found</button>
+            </div>
+            <button id="clear-filter" class="btn btn-warning">Clear</button>
+            <button id="print-button" class="pull-right btn btn-info">Print</button>
         </div>
-        <button id="clear-filter" class="btn btn-warning">Clear</button>
-        <button id="print" class="pull-right btn btn-info">Print</button>
-    </div>
+    @else
+        <h1 id="title"></h1>
+        <p class="lead pull-right">{{ date('M d, Y') }}</p>
+    @endif
     <div class="col-xs-12">&nbsp;</div>
     <div class="row" id="output_area">
 
