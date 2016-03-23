@@ -86,10 +86,10 @@ function doFilter(type) {
             filter = function(item) { return item.status === 'Deceased' };
             break;
         case 'found':
-            filter = function(item) { return item.found16 === 1 };
+            filter = function(item) { return item.found16 == 1 };
             break;
         case 'notfound':
-            filter = function(item) { return item.found16 === 0 };
+            filter = function(item) { return item.found16 == 0 };
     }
 
     var filtered = guests.filter(filter);
