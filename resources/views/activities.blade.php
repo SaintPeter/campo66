@@ -33,8 +33,8 @@
         <div class="panel-heading"><h2 class="panel-title">Reunion Committee</h2></div>
         <div class="panel-body">
             <img src="/images/committee.jpg" class="img-responsive"><br>
-            Don Schrader, Sandy Ivy Landin, Valerie Smith Brousseau, Bill Smedley, Gwen Reid Lundmark, Bruce Van Voorhis and Judi Steen Carmona<br>
-            <p class="text-center">e are having so much fun and can&apos;t wait to see you all!</p>
+            Don Schrader, Sandy Ivy Landin, Valerie Smith Brousseau, Bill Smedley, Gwen Reid Lundmark, Bruce Van Voorhis and Judi Steen Carmona<br><br>
+            <p class="text-center"><strong>We are having so much fun and can&apos;t wait to see you all!</strong></p>
          </div>
     </div>
 
