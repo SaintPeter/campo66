@@ -8,7 +8,7 @@
         <div class="panel-heading"><h2 class="panel-title">Friday, October 14, 2016</h2></div>
         <div class="panel-body">
             <strong>Afternoon</strong> &mdash; Tour of Campolindo<br>
-            <strong>Evening </strong> &mdash; Away football game or A casual gathering at a local restaurant
+            <strong>Evening </strong> &mdash; Away football game or a casual gathering at the Embassy Suites Lounge 7:00pm
          </div>
     </div>
 
@@ -33,7 +33,8 @@
         <div class="panel-heading"><h2 class="panel-title">Reunion Committee</h2></div>
         <div class="panel-body">
             <img src="/images/committee.jpg" class="img-responsive"><br>
-            We are having so much fun and can&apos;t wait to see you all!<br>
+            Don Schrader, Sandy Ivy Landin, Valerie Smith Brousseau, Bill Smedley, Gwen Reid Lundmark, Bruce Van Voorhis and Judi Steen Carmona<br>
+            <p class="text-center">e are having so much fun and can&apos;t wait to see you all!</p>
          </div>
     </div>
 
