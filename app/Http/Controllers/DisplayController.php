@@ -19,12 +19,25 @@ class DisplayController extends Controller
 
     public function email(Request $request) {
         // campolindo66@gmail.com
-        Mail::send('emails.contact', $request->all(), function($message) {
-           $message->to('campolindo66@gmail.com', 'Reunion Coordinators')->subject('Contact Form E-mail');
-        });
+        try {
+            $sent = Mail::send('emails.contact', $request->all(), function($message) {
+                $message->from('campolindo66@gmail.com', 'Campolindo Reunion Website');
+                $message->to('campolindo66@gmail.com', 'Reunion Coordinators');
+                $message->subject('Contact Form E-mail');
+                $message->sender('campolin@campolindoreunion1966.com');
+                return $message;
+            });
+        }
+        catch (\Exception $e)
+        {
+            dd($e->getMessage());
+        }
+
+        if( !$sent) {
+            return redirect('contact')->with('error', 'An error occured while sending your message.');
+        }
 
         return redirect('contact')->with('message', 'E-mail Sent!  Thank you!');
-
     }
 
     public function answers(Guest $guest) {
