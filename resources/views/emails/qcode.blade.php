@@ -9,6 +9,8 @@
 Your Questionnaire Code is:<br>
 <strong>{{ $guest->qcode }}</strong></p>
 
+<p><strong>Please submit by August 1<sup>st</sup>, 2016</strong></p>
+
 <p>Looking forward to reading your response!<br>
 Campolindo Reunion Committee<br>
 Bill, Bruce, Don, Gwen, Judi, Sandy, Valerie</p>

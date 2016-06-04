@@ -264,6 +264,7 @@
 
 <div class="row clearfix">
     <div class="form-group col-sm-12">
+        <p><strong>Please submit by August 1<sup>st</sup>, 2016</strong></p>
         <button type="submit" data-id="{{ $guest->id }}"class="btn btn-primary save-button">Submit</button>
     </div>
 </div>
