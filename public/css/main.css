@@ -58,6 +58,14 @@ h1 {
     text-align: center;
 }
 
+.indent {
+    margin-left: 20px;
+}
+
+.btn-margin {
+    margin: 5px;
+}
+
 /* -- Front Page -- */
 
 .jumbotron {

@@ -6,6 +6,20 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Home', route('home'));
 });
 
+// Home > Questionnaire
+Breadcrumbs::register('questionnaire.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Questionnaire', route('questionnaire.index'));
+});
+
+// Home > Questionnaire > Answer
+Breadcrumbs::register('questionnaire.answer', function($breadcrumbs)
+{
+    $breadcrumbs->parent('questionnaire.index');
+    $breadcrumbs->push('Answer Questionaire', route('questionnaire.answer'));
+});
+
 // Home > Class List
 Breadcrumbs::register('classlist', function($breadcrumbs)
 {

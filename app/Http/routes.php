@@ -19,7 +19,6 @@ Route::group(['middleware' => 'web'], function () {
         'getEmail' => 'pass.email',
         'postEmail' => 'pass.email',
         'getBroker' => 'pass.broker'
-
     ]);
 
     Route::controller('auth', 'Auth\AuthController', [
@@ -46,21 +45,31 @@ Route::group(['middleware' => 'web'], function () {
     })->name('contact');
 
     Route::post('/email', 'DisplayController@email')->name('email');
+
+    Route::get('questionnaire/answer/{qcode?}', 'QuestionnaireController@answer')
+        ->name('questionnaire.answer');
+    Route::get('questionnaire/resend', 'QuestionnaireController@resend')
+        ->name('questionnaire.resend');
+    Route::resource('questionnaire', 'QuestionnaireController', ['except' => [ 'create', 'edit','destroy' ]]);
+
 });
 
 /* ------- Administrator/Registered User Only Routes ----------- */
 Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/classmates/emails', 'GuestsController@emails')
+    Route::get('/classmates/emails',                    'GuestsController@emails')
         ->name('classmates.emails');
-    Route::get('/classmates/detail/{id}', 'GuestsController@detail')
+    Route::get('/classmates/detail/{id}',               'GuestsController@detail')
         ->name('classmates.detail');
     Route::get('/classmates/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
         ->name('classmates.setstatus');
-    Route::get('/classmates/toggle16/{id?}', 'GuestsController@toggle16')
+    Route::get('/classmates/toggle16/{id?}',            'GuestsController@toggle16')
         ->name('classmates.toggle16');
-    Route::get('/classmates/status/{print?}', 'GuestsController@status')
+    Route::get('/classmates/status/{print?}',           'GuestsController@status')
         ->name('classmates.status');
+    Route::get('/classmates/generate_qcodes/',          'GuestsController@generate_qcodes')
+        ->name('classmates.generate_qcodes');
     Route::resource('/classmates', 'GuestsController');
+
 });
 
 

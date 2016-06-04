@@ -12,7 +12,7 @@
             {{ $guest->last_name }}
     </h2>
 
-   <em>Circa 1986/1996</em></div>
+   <em>Circa 1986</em></div>
     <hr>
     <div class="row">
         <div class="col-xs-2">

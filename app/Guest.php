@@ -90,7 +90,7 @@ class Guest extends Model
 
     // Relationships
     public function answer() {
-        return $this->belongsTo('App\Answer');
+        return $this->hasOne('App\Answer');
     }
 
 }

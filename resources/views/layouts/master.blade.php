@@ -67,12 +67,13 @@
 	    @if(!preg_match('/password|auth|welcome/', $view_name))
 	        {!! Breadcrumbs::render() !!}
 	    @endif
+	    @include('partials.flash')
 		@yield('content')
 	</div>
 
 	<hr/>
 
-	<div class="container footer">
+	<div class="container footer clearfix">
     	<ul class="share-buttons">
           <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&t=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966" title="Share on Facebook" target="_blank"><img src="/images/flat_web_icon_set/color/Facebook.png"></a></li>
           <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.campolindoreunion1966.com%2F&text=Campolindo%20High%20School%20Reunion%20-%20Class%20of%201966:%20http%3A%2F%2Fwww.campolindoreunion1966.com%2F" target="_blank" title="Tweet"><img src="/images/flat_web_icon_set/color/Twitter.png"></a></li>
