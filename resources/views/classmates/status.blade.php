@@ -123,7 +123,7 @@ function fullname(obj) {
     }
 }
 var printMode = "{{ $print }}";
-var guests = {!! $guests->toJson() !!};
+var guests = {!! $jsonData !!};
 
 @endsection
 

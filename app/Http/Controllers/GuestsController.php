@@ -193,6 +193,38 @@ class GuestsController extends Controller
     public function status($print = '') {
         $guests = Guest::orderBy('last_name')->get();
 
-        return view('classmates.status', compact('guests', 'print'));
+        $jsonData = json_encode($guests->reduce(function($arr, $guest) {
+            $arr[] = [
+                'first_name'   => $guest->first_name,
+                'last_name'    => $guest->last_name,
+                'married_name' => $guest->married_name,
+                'status'       => $guest->status,
+                'found16'      => $guest->found16
+            ];
+            return $arr;
+        }, []));
+
+        return view('classmates.status', compact('jsonData', 'print'));
+    }
+
+    /**
+     * Generate all of the q-codes for all users
+     *
+     * @param none
+     *
+     * @return response
+     */
+    public function generate_qcodes()
+    {
+        $guests = Guest::all();
+
+        $count = 0;
+        foreach($guests as $guest) {
+            $guest->qcode = $guest->generate_qcode();
+            $guest->save();
+            $count++;
+        }
+
+        return redirect('classmates')->with('message', "$count Guests Updated");
     }
 }

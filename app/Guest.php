@@ -20,9 +20,9 @@ class Guest extends Model
    ];
 
    // For JSON export
-   protected $visible = [
-        'first_name', 'last_name', 'married_name', 'status', 'found16'
-   ];
+//   protected $visible = [
+//        'first_name', 'last_name', 'married_name', 'status', 'found16'
+//   ];
 
     // Date fields automatically converted to Carbon
     protected $dates = ['created_at', 'updated_at', 'email_date'];
@@ -78,5 +78,19 @@ class Guest extends Model
         return '';
     }
 
+    // Generates a Questionnaire key code
+    public function generate_qcode() {
+        return strtoupper(substr(md5($this->id . $this->first_name . $this->last_name . env('SALT', 'rando')),0,10));
+    }
+
+    // Lookup the Questionnaire code
+    public static function findByQcode($qcode) {
+        return Guest::where('qcode', $qcode)->with('answer')->first();
+    }
+
+    // Relationships
+    public function answer() {
+        return $this->belongsTo('App\Answer');
+    }
 
 }
