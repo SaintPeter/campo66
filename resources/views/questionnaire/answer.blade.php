@@ -33,7 +33,7 @@
 
 <div class="row">
     <h2>Update Personal Information</h2>
-    <p>Information in this section will only be made public if you explictly allow it.</p>
+    <p>Information in this section will only be made public if you explicitly allow it.</p>
     <div class="form-group">
         <div class="col-md-4 col-sm-6">
             <label for="married_name">Married Name</label>
@@ -215,7 +215,7 @@
 
 <div class="row">
     <div class="form-group col-xs-12">
-    <label for="greatgrandchildren">Number of great grantchildren and their ages:</label>
+    <label for="greatgrandchildren">Number of great grandchildren and their ages:</label>
     {!! Form::textarea('greatgrandchildren', null, [ 'class' => 'form-control' ]) !!}
     </div>
 </div>

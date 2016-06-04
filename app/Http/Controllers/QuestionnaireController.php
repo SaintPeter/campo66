@@ -178,7 +178,7 @@ class QuestionnaireController extends Controller
             $sent = Mail::send('emails.qcode', [ 'guest' => $guest, 'email' => $email ], function($message) use ($email, $guest) {
                 $message->from('campolindo66@gmail.com', 'Campolindo Reunion Website');
                 $message->to($email, $guest->full_name);
-                $message->subject('Campolindo Reunion 1966 - Questionnaire Code');
+                $message->subject('Campolindo Reunion 1966 - Questionnaire and Code');
                 $message->sender('campolin@campolindoreunion1966.com');
                 return $message;
             });
