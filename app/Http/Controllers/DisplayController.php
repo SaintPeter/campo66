@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class DisplayController extends Controller
 {
     public function classlist() {
-        $guests = Guest::orderBy('last_name')->get();
+        $guests = Guest::with('answer')->orderBy('last_name')->get();
 
         return view('classlist', compact('guests'));
     }

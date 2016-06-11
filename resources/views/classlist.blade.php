@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('script')
-$('#filter').livefilter({selector:'table td'}).focus();
+$('#filter').livefilter({selector:'table tr'}).focus();
 @endsection
 
 @section('content')
@@ -22,22 +22,30 @@ $('#filter').livefilter({selector:'table td'}).focus();
         <table class="classlist table table-striped">
         <tr>
         <th>Name</th>
-        <th class="text-center">Questionare</th>
+        <th class="text-center">Questionnaires</th>
         <th class="text-center">Status</th>
 
         </tr>
         @foreach($guests as $guest)
             <tr>
                 <td>
-                    <a href="{{ route('answers', [ 'id' => $guest->id ]) }}">
-                        {{ $guest->full_name }}
-                    </a>
+                    {{ $guest->full_name }}
                 </td>
                 <td class="text-center">
                     @if($guest->answerLength())
-                        <i class="fa fa-file-text-o" title="Questionare Answers from 1986/1996"></i>
+                        <a href="{{ route('answers', [ 'id' => $guest->id ]) }}#view1986" title="Questionnaire Answers from 1986">
+                            1986
+                            <i class="fa fa-file-text-o"></i>
+                        </a>
                     @else
                         &nbsp;
+                    @endif
+                    @if(isset($guest->answer))
+                        &nbsp;
+                        <a href="{{ route('answers', [ 'id' => $guest->id ]) }}#view2016" title="Questionnaire Answers from 2016">
+                            2016
+                            <i class="fa fa-file-text-o"></i>
+                        </a>
                     @endif
                 </td>
                 <td class="text-center">

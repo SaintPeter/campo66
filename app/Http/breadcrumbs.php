@@ -69,6 +69,13 @@ Breadcrumbs::register('classmates.status', function($breadcrumbs)
     $breadcrumbs->push('Classmate Status', route('classmates.status'));
 });
 
+// Home > Classmates > Questionnaire
+Breadcrumbs::register('classmates.questionnaire', function($breadcrumbs)
+{
+    $breadcrumbs->parent('classmates.index');
+    $breadcrumbs->push('Questionnaires', route('classmates.questionnaire'));
+});
+
 // Home > Contact Us
 Breadcrumbs::register('contact', function($breadcrumbs)
 {

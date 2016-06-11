@@ -1,7 +1,9 @@
 <?php
 
 /* ------- Public Routes ----------- */
-Route::model('guest', 'App\Guest');
+Route::bind('guest', function($id) {
+    return App\Guest::with('answer')->findOrFail($id);
+});
 
 View::composer('*', function($view){
 
@@ -60,6 +62,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         ->name('classmates.emails');
     Route::get('/classmates/detail/{id}',               'GuestsController@detail')
         ->name('classmates.detail');
+    Route::get('/classmates/questionnaire',             'GuestsController@questionnaire')
+        ->name('classmates.questionnaire');
+    Route::get('/classmates/questionnaire/resend/{guest_id}', 'GuestsController@questionnaire_resend')
+        ->name('classmates.questionnaire.resend');
+    Route::get('/classmates/questionnaire/resend_async/{guest_id?}', 'GuestsController@questionnaire_resend_async')
+        ->name('classmates.questionnaire.resend_async');
+    Route::get('/classmates/questionnaire/send', 'GuestsController@questionnaires_send')
+        ->name('classmates.questionnaire.send');
     Route::get('/classmates/setstatus/{id?}/{status?}', 'GuestsController@setstatus')
         ->name('classmates.setstatus');
     Route::get('/classmates/toggle16/{id?}',            'GuestsController@toggle16')

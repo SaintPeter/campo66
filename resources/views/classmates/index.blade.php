@@ -7,6 +7,7 @@ $('.set_status').on('click', setStatus);
 $(document).on('click', '.phonetype', setPhoneType);
 $(document).on('click', '.found16', toggle16);
 $(document).on('click', '.save-button', saveData);
+$(document).on('click', '.resend-button', resendQuestionnaire);
 $('#filter').livefilter({selector:'table tr.guestrow'}).focus();
 
 function toggleRow(e) {
@@ -90,6 +91,17 @@ function saveData(e) {
     });
 }
 
+function resendQuestionnaire(e) {
+    e.preventDefault();
+
+    var id = $(this).data('id');
+
+    $.get("{{ route('classmates.questionnaire.resend_async') }}/" + id, function(data) {
+        var detail = $("#detail" + id);
+        detail.append(data);
+    });
+}
+
 @endsection
 
 @section('content')
@@ -99,6 +111,7 @@ function saveData(e) {
             <a href="{{ route('classmates.create') }}" class="btn btn-primary pull-right btn-sm add-guest">Add Classmate</a>
             <a href="{{ route('classmates.emails') }}" class="btn btn-info pull-right btn-sm email-list">E-mail List</a>
             <a href="{{ route('classmates.status') }}" class="btn btn-success pull-right btn-sm status-list">Status Lists</a>
+            <a href="{{ route('classmates.questionnaire') }}" class="btn btn-warning pull-right btn-sm questionnaires">Questionnaires</a>
             <div class="col-md-3 col-sm-4 col-xs-6 filter-holder">
                 {!! Form::text('filter', null, [ 'id' => 'filter', 'class' => 'form-control', 'placeholder' => 'Bob Jones' ]) !!}
             </div>
@@ -112,25 +125,32 @@ function saveData(e) {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Married Name</th>
-                    <th class="text-center">Notes</th>
+                    <th class="text-center">Indicators</th>
                     <th class="text-center">Found '96</th>
                     <th class="text-center">Found '16</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($guests as $item)
-                <tr class="guestrow" data-id="{{ $item->id }}">
-                    <td class="first_name">{{ $item->first_name }}</td>
-                    <td class="last_name">{{ $item->last_name }}</td>
-                    <td class="married_name">{{ $item->married_name }}</td>
+            @foreach($guests as $guest)
+                <tr class="guestrow" data-id="{{ $guest->id }}">
+                    <td class="first_name">{{ $guest->first_name }}</td>
+                    <td class="last_name">{{ $guest->last_name }}</td>
+                    <td class="married_name">{{ $guest->married_name }}</td>
                     <td class="notes-col">
-                        @if(!empty(trim($item->notes)))
-                            <i class="fa fa-file-text-o fa-lg"></i>
+                        @if(!empty(trim($guest->notes)))
+                            <i class="fa fa-file-text-o fa-lg" title="Has Notes"></i>
+                        @endif
+                        @if(isset($guest->qsent))
+                            @if(isset($guest->answer))
+                                <i class="fa fa-question-circle-o fa-lg" title="Answered Questionnaire"></i>
+                            @else
+                                <i class="fa fa-envelope-o fa-lg" title="Questionnaire Sent"></i>
+                            @endif
                         @endif
                     </td>
                     <td class="found-col noclick">
-                        @if($item->found96)
+                        @if($guest->found96)
                             <span class="found">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </span>
@@ -141,7 +161,7 @@ function saveData(e) {
                         @endif
                     </td>
                     <td class="found-col noclick">
-                        @if($item->found16)
+                        @if($guest->found16)
                             <span class="found">
                                 <span class="glyphicon glyphicon-ok found16" title="Click To Toggle" aria-hidden="true"></span>
                             </span>
@@ -153,20 +173,20 @@ function saveData(e) {
                     </td>
                     <td class="status-col noclick">
                         <div class="btn-group">
-                          <button type="button" class="btn btn-sm dropdown-toggle {{ $item->statusColor() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ $item->status }} <span class="caret"></span>
+                          <button type="button" class="btn btn-sm dropdown-toggle {{ $guest->statusColor() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ $guest->status }} <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu">
-                            <li><a class="set_status" data-id="{{ $item->id }}" href="#">Unknown</a></li>
-                            <li><a class="set_status bg-success" data-id="{{ $item->id }}" href="#">Attending</a></li>
-                            <li><a class="set_status bg-warning" data-id="{{ $item->id }}" href="#">Not Attending</a></li>
-                            <li><a class="set_status bg-info" data-id="{{ $item->id }}" href="#">Deceased</a></li>
+                            <li><a class="set_status" data-id="{{ $guest->id }}" href="#">Unknown</a></li>
+                            <li><a class="set_status bg-success" data-id="{{ $guest->id }}" href="#">Attending</a></li>
+                            <li><a class="set_status bg-warning" data-id="{{ $guest->id }}" href="#">Not Attending</a></li>
+                            <li><a class="set_status bg-info" data-id="{{ $guest->id }}" href="#">Deceased</a></li>
                           </ul>
                         </div>
                     </td>
                 </tr>
                 <tr class="hiderow detailrow">
-                    <td id="detail{{ $item->id }}" colspan="7">
+                    <td id="detail{{ $guest->id }}" colspan="7">
                     </td>
                 </tr>
             @endforeach

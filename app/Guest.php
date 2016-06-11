@@ -16,7 +16,7 @@ class Guest extends Model
         'children_names', 'education', 'employment',
         'hobbies', 'unexpected_event', 'greatest_accomplishment',
         'travel', 'notdone', 'miles', 'dlnum', 'quest',
-        'email_date'
+        'email_date', 'qsent'
    ];
 
    // For JSON export
@@ -25,7 +25,7 @@ class Guest extends Model
 //   ];
 
     // Date fields automatically converted to Carbon
-    protected $dates = ['created_at', 'updated_at', 'email_date'];
+    protected $dates = ['created_at', 'updated_at', 'email_date', 'qsent'];
 
     public function statusColor() {
         $colors = [

@@ -117,11 +117,27 @@
 </div>
 
 <div class="col-xs-12">&nbsp;</div>
+
+<div class="form-group">
+    <div class="col-sm-6 text-center">
+    <label for="qcode">Questionnaire Code</label>
+    {!! Form::text('qcode', null, [ 'class' => 'form-control', 'readonly' => 'readonly'  ]) !!}
+    [
+    @if(isset($guest->answer))
+        <a href="{{ route('answers', [ $guest ]) }}#view2016" target="_blank"><i class="fa fa-eye"></i>&nbsp;View Answers</a> |
+    @endif
+    <a href="{{ route('questionnaire.answer', [ $guest->qcode ]) }}" target="_blank"><i class="fa fa-edit"></i>&nbsp;Create/Edit</a> ]
+    </div>
+</div>
+
+<div class="col-xs-12">&nbsp;</div>
+
 {!! Form::close() !!}
 
 <div class="form-group">
     <div class="col-sm-12">
-        <button type="submit" data-id="{{ $guest->id }}"class="btn btn-warning save-button">Update</button>
+        <button data-id="{{ $guest->id }}" class="btn btn-warning save-button">Update</button>
+        <button data-id="{{ $guest->id }}" class="btn btn-info resend-button" >{{ isset($guest->qsent) ? 'Resend' : 'Send' }} Questionnaire</button>
         {{ Form::open(['route' => ['classmates.destroy', $guest->id], "id" =>  "delete-user" . $guest->id,  'method' => 'delete', "class"=>"pull-right", "style" => "display: inline-block"]) }}
         {{ Form::button('Delete', [ "class" => "btn btn-danger delete-button pull-right"]) }}
         {{ Form::close() }}

@@ -1,10 +1,11 @@
 <h1>Campolindo High School Reunion - Class of 1966</h1>
 <p>{{ $guest->first_name }}, we are seeking information on our classmates to find out what each other has been up to.  These Questionnaires will be posted on the website.  Please fill out some or all of the questions as you would like.  Note that you can choose to have your contact information public or private.</p>
-<p>To fill out the Questionnaire, follow this unique link:</p>
-<a href="{{ route('questionnaire.answer', [ $guest->qcode ]) }}">{{ route('questionnaire.answer', [ $guest->qcode ]) }}</a><br>
-<p>Alternatively, you can visit this page enter your Questionnaire Code (Below):</p>
+<p>To fill out the Questionnaire, follow this unique link:<br>
+    <a href="{{ route('questionnaire.answer', [ $guest->qcode ]) }}">{{ route('questionnaire.answer', [ $guest->qcode ]) }}</a>
+</p>
+<p>Alternatively, you can visit this page enter your Questionnaire Code (Below):<br>
 {{ route('questionnaire.index') }}
-
+</p>
 <p>You can always re-visit your link to edit your answers. <br>
 Your Questionnaire Code is:<br>
 <strong>{{ $guest->qcode }}</strong></p>

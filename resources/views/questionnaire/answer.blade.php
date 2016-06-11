@@ -28,12 +28,12 @@
 
 {!! Form::hidden('qcode', $qcode) !!}
 <div class="row">
-    Questionnaire for {{ $guest->first_name }} {{ $guest->last_name }}
+    <h3>Questionnaire for {{ $guest->first_name }} {{ $guest->last_name }}</h3>
 </div>
 
 <div class="row">
     <h2>Update Personal Information</h2>
-    <p>Information in this section will only be made public if you explicitly allow it.</p>
+    <p>Here is the current contact information we have for you.  This information will be kept private.  We will use changes you make to update our records.</p>
     <div class="form-group">
         <div class="col-md-4 col-sm-6">
             <label for="married_name">Married Name</label>
@@ -77,12 +77,8 @@
         </div>
     </div>
 
-   <div class="form-group col-xs-4">
-        <label for="public_address">Make Address Public?</label>
-        {!! Form::select('public_address', ['0' => 'Private', '1' => 'Public'],  null, [ 'class' => 'form-control' ]) !!}
-    </div>
-
     <div class="col-xs-12">&nbsp;</div>
+
     @for($i = 1; $i < 4; $i++)
     <div class="form-group margin">
         <div class="col-md-3 col-sm-3 col-xs-6">
@@ -111,11 +107,6 @@
     &nbsp;
     </div>
 
-    <div class="form-group col-xs-4">
-        <label for="public_phone">Make Phone Numbers Public?</label>
-        {!! Form::select('public_phone', ['0' => 'Private', '1' => 'Public'],  null, [ 'class' => 'form-control' ]) !!}
-    </div>
-
     <div class="col-xs-12">&nbsp;</div>
 
     <div class="form-group">
@@ -132,15 +123,11 @@
         </div>
     </div>
 
-    <div class="form-group col-xs-4">
-        <label for="public_email">Make e-mail Address Public?</label>
-        {!! Form::select('public_email', ['0' => 'Private', '1' => 'Public'],  null, [ 'class' => 'form-control' ]) !!}
-    </div>
-
 </div>
 
 <div class="row">
     <h2>Questionnaire</h2>
+    <p>These answers will be displayed on our website, in the <a href="{{ route('classlist') }}" target="_blank">Class List</a></p>
 </div>
 
 <div class="row">

@@ -78,14 +78,14 @@ class QuestionnaireController extends Controller
             return redirect('questionnaire')->with('error', 'Cannot find that questionnaire code');
         }
 
-        //$values = $request->all() + [ 'guest_id' => $guest->id ];
-        //dd($values);
+        // Check for changes to the guest
+        $delta = $this->delta_check($guest, $request);
 
-        $answer = Answer::create($request->all() + [ 'guest_id' => $guest->id ]);
+        $answer = Answer::create($request->all() + [ 'guest_id' => $guest->id,  'delta' => $delta ]);
 
         Session::flash('message', 'Answer added for ' . $guest->full_name . '!');
 
-        return redirect('questionnaire');
+        return redirect()->route('answers', ['guest' => $guest, '#view2016']);
     }
 
     /**
@@ -122,12 +122,37 @@ class QuestionnaireController extends Controller
             return redirect('questionnaire')->with('error', 'Cannot find that questionnaire code');
         }
 
+        // Check for changes to the guest
+        $delta = $this->delta_check($guest, $request);
+
         $answer = Answer::findOrFail($id);
-        $answer->update($request->all());
+        $answer->update($request->all() + ['delta' => $delta]);
 
         Session::flash('message', 'Questionnaire updated!');
 
-        return redirect('questionnaire');
+        return redirect()->route('answers', ['guest' => $guest, '#view2016']);
+    }
+     /**
+     * Check if there are changes to the guest record
+     *
+     * @param  Guest $guest
+     * @param  Request $request
+     *
+     * @return Response
+     */
+    public function delta_check($guest, $request)
+    {
+        $fields = [ 'married_name', 'spouse_name',
+                    'address1', 'address2', 'city', 'state', 'zip',
+                    'phone1', 'phone1type', 'phone2', 'phone2type', 'phone3', 'phone3type',
+                    'email', 'email2' ];
+
+        foreach($fields as $field) {
+            if($guest->$field != $request->$field) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -165,17 +190,16 @@ class QuestionnaireController extends Controller
             return redirect('questionnaire')->with('error', "Cannot find a classmate with an e-mail \"$email\"");
         }
 
-        $result = $this->send_qcode($guest, $email);
-        if($result != true) {
-            return $result;
+        if(!$this->send_qcode($guest, $email)) {
+            return redirect('questionnaire')->with('error', 'An error occured while sending your message.');
         }
 
         return redirect('questionnaire')->with('message', 'Questionnaire Code Sent');
     }
 
-    public function send_qcode($guest, $email) {
+    public static function send_qcode($guest, $email) {
         try {
-            $sent = Mail::send('emails.qcode', [ 'guest' => $guest, 'email' => $email ], function($message) use ($email, $guest) {
+            $sent = Mail::send([ 'emails.qcode', 'emails.qcode_text'] , [ 'guest' => $guest, 'email' => $email ], function($message) use ($email, $guest) {
                 $message->from('campolindo66@gmail.com', 'Campolindo Reunion Website');
                 $message->to($email, $guest->full_name);
                 $message->subject('Campolindo Reunion 1966 - Questionnaire and Code');
@@ -185,12 +209,14 @@ class QuestionnaireController extends Controller
         }
         catch (\Exception $e)
         {
-            dd($e->getMessage());
+            dd('User: '. $guest->full_name . ' e-mail: ' . $email, $e->getMessage());
         }
 
         if( !$sent) {
-            return redirect('contact')->with('error', 'An error occured while sending your message.');
+            return false;
         }
+
+        $guest->update( [ 'qsent' => Carbon::now() ] );
 
         return true;
     }

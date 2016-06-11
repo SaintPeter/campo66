@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionnaireController;
 
 use App\Guest;
 use Illuminate\Http\Request;
@@ -20,9 +21,131 @@ class GuestsController extends Controller
      */
     public function index()
     {
-        $guests = Guest::orderBy('last_name')->get();
+        $guests = Guest::with('answer')->orderBy('last_name')->get();
 
         return view('classmates.index', compact('guests'));
+    }
+
+    /**
+     * Display Questionnaire status and controls.
+     *
+     * @return Response
+     */
+    public function questionnaire()
+    {
+        $guests_sent = Guest::with('answer')->whereNotNull('qsent')->orderBy('last_name')->get();
+        $guests_unsent = Guest::with('answer')
+                              ->whereNull('qsent')
+                              ->where(function($q) {
+                                  $q->where('email', '<>', '')->orWhere('email2', '<>', '');
+                              })
+                              ->orderBy('last_name')->get();
+
+        return view('classmates.questionnaire', compact('guests_sent', 'guests_unsent'));
+    }
+
+    /**
+     * Send all of the unsent questionnaires
+     *
+     * @return Redirect to questionnaire
+     */
+    public function questionnaires_send()
+    {
+        $guests = Guest::with('answer')
+                      ->whereNull('qsent')
+                      ->where(function($q) {
+                          $q->where('email', '<>', '')->orWhere('email2', '<>', '');
+                      })->get();
+
+        $good_count = 0;
+        $bad_count = 0;
+        $errors = [];
+
+        foreach($guests as $guest) {
+            if(!empty($guest->email)) {
+                if(filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
+                    if(QuestionnaireController::send_qcode($guest, $guest->email)) {
+                        $good_count++;
+                    } else {
+                        $bad_count++;
+                    }
+                } else {
+                    $errors[] = "Classmate {$guest->full_name} has an invalid e-mail address.";
+                    $bad_count++;
+                }
+            }
+            if(!empty($guest->email2)) {
+                if(filter_var($guest->email2, FILTER_VALIDATE_EMAIL)) {
+                    if(QuestionnaireController::send_qcode($guest, $guest->email2)) {
+                        $good_count++;
+                    } else {
+                        $bad_count++;
+                    }
+                } else {
+                    $errors[] = "Classmate {$guest->full_name} has an invalid e-mail address.";
+                    $bad_count++;
+                }
+            }
+        }
+
+        return redirect()->route('classmates.questionnaire')
+            ->with([ 'message' => "Questionnaires Sent - $good_count good, $bad_count bad.",
+                'error' => join(', ', $errors)
+            ]);
+    }
+
+    /**
+     * Resend single questionnaire
+     *
+     * @return Response
+     */
+    public function questionnaire_resend($guest_id)
+    {
+        $guest = Guest::find($guest_id);
+
+        if(isset($guest)) {
+            if(!empty($guest->email)) {
+                if(filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
+                    if(QuestionnaireController::send_qcode($guest, $guest->email)) {
+                        return redirect()->route('classmates.questionnaire')
+                                         ->with('message', "Code Resent");
+                    }
+                } else {
+                    return redirect()->route('classmates.questionnaire')
+                                     ->with('error', "{$guest->full_name} has an invalid e-mail address.");
+                }
+            }
+        }
+
+        return redirect()->route('classmates.questionnaire')
+                         ->with('error', "Unable to resend questionnaire");
+    }
+
+     /**
+     * Resend single questionnaire for Ajax
+     *
+     * @return Response
+     */
+    public function questionnaire_resend_async($guest_id)
+    {
+        $guest = Guest::find($guest_id);
+
+        if(isset($guest)) {
+            if(!empty($guest->email)) {
+                if(filter_var($guest->email, FILTER_VALIDATE_EMAIL)) {
+                    if(QuestionnaireController::send_qcode($guest, $guest->email)) {
+                        Session::flash('message', "Code Resent");
+                        return view('partials.flash');
+                    }
+                } else {
+                    Session::flash('error', "{$guest->full_name} has an invalid e-mail address.");
+                    return view('partials.flash');
+                }
+            }
+        }
+
+        Session::flash('error', "Unable to resend questionnaire");
+        return view('partials.flash');
     }
 
     /**
@@ -96,7 +219,7 @@ class GuestsController extends Controller
     */
     public function detail($id)
     {
-    $guest = Guest::findOrFail($id);
+    $guest = Guest::with('answer')->findOrFail($id);
 
     return view('classmates.partial.detail', compact('guest'));
     }

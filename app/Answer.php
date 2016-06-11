@@ -15,7 +15,8 @@ class Answer extends Model
        'coolestjob', 'occupation', 'retired', 'retired_date',
        'children', 'grandchildren', 'greatgrandchildren', 'countries',
        'furthest_country', 'highlights', 'achievement', 'differently', 'last_words',
-       'public_address', 'public_phone', 'public_email'
+       'public_address', 'public_phone', 'public_email',
+       'delta'
        ];
 
     public function guest() {
