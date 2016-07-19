@@ -6,4 +6,7 @@
     <h2>Class of 1966 &bull; 50<sup>th</sup> Reunion Website</h2>
     <img class="image-center" src="images/cougars-logo.png">
 </div>
+
+@include('partials.q-note')
+
 @endsection

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Login</h1>
+            <h1>Administrator Login</h1>
             <div class="panel panel-default">
                  <div class="panel-body">
                     <div class="col-md-10">&nbsp;</div>
@@ -61,6 +61,11 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @include('partials.q-note')
         </div>
     </div>
 </div>

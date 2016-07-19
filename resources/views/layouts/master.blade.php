@@ -47,15 +47,16 @@
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-				        <li><a href="{{ route('activities') }}">Activities</a></li>
-				        <li><a href="{{ route('classlist') }}">Class List</a></li>
-				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
-					@if (Auth::guest())
-						<li><a href="{{ url('auth/login') }}">Login</a></li>
+				        @if (Auth::guest())
+						<li><a href="{{ url('auth/login') }}">Admin</a></li>
 					@else
 					    <li><a href="{{ route('classmates.index') }}">Classmates</a></li>
 						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
+				        <li><a href="{{ route('activities') }}">Activities</a></li>
+				        <li><a href="{{ route('classlist') }}">Class List</a></li>
+				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
+
 				</ul>
 			</div>
 
