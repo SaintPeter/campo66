@@ -30,6 +30,13 @@
     </div>
 
     <div class="panel panel-default">
+        <div class="panel-heading"><h2 class="panel-title">Get Your Reservation Form</h2></div>
+        <div class="panel-body">
+            To receive a Reservation Form to sign up for events, please click on <a href="{{ route('contact') }}">Contact Us</a> - we need your email address. Thank you!
+         </div>
+    </div>
+
+    <div class="panel panel-default">
         <div class="panel-heading"><h2 class="panel-title">Reunion Committee</h2></div>
         <div class="panel-body">
             <img src="/images/committee.jpg" class="img-responsive"><br>
