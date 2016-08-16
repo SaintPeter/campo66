@@ -4,14 +4,7 @@ Campolindo High School Reunion - Class of 1966
 To fill out the Questionnaire, follow this unique link:
 {{ route('questionnaire.answer', [ $guest->qcode ]) }}
 
-Alternatively, you can visit this page enter your Questionnaire Code (Below):
-{{ route('questionnaire.index') }}
-
-You can always re-visit your link to edit your answers.
-Your Questionnaire Code is:
-{{ $guest->qcode }}
-
-Please submit by August 1st, 2016
+Please submit by September 16th, 2016
 
 Looking forward to reading your response!
 Campolindo Reunion Committee

@@ -3,14 +3,8 @@
 <p>To fill out the Questionnaire, follow this unique link:<br>
     <a href="{{ route('questionnaire.answer', [ $guest->qcode ]) }}">{{ route('questionnaire.answer', [ $guest->qcode ]) }}</a>
 </p>
-<p>Alternatively, you can visit this page enter your Questionnaire Code (Below):<br>
-{{ route('questionnaire.index') }}
-</p>
-<p>You can always re-visit your link to edit your answers. <br>
-Your Questionnaire Code is:<br>
-<strong>{{ $guest->qcode }}</strong></p>
 
-<p><strong>Please submit by August 1<sup>st</sup>, 2016</strong></p>
+<p><strong>Please submit by September 16<sup>th</sup>, 2016</strong></p>
 
 <p>Looking forward to reading your response!<br>
 Campolindo Reunion Committee<br>
