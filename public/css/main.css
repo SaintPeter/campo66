@@ -293,3 +293,8 @@ h1 {
         display:block !important;
     }
 }
+
+/* Activities */
+.activities p {
+    margin-left: 25px;
+}
