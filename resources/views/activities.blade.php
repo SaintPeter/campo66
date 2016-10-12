@@ -9,9 +9,11 @@
         <div class="panel-body">
             <strong>11:45AM &mdash; Panel Discussion/Presentation</strong><br>
             <p>Meet with the current students at Campolindo in the small gym (between back parking lot  & original gym).  Visitor nametags will be given in the gym. Co-chairs are Dave Hobbs and Roger Ganse.  Do not arrive before 11:30 please; park in the neighborhood, beware "no parking" signs.  Lunch is not provided.</p>
+            <p>We were asked to enter the school from the back lot, not the front of the school.</p>
 
             <strong>3:15PM &mdash; Campolindo Guided Tour</strong><br>
             <p>Meet in the small gym (between back parking lot & original gym).  Visitor nametags will be given in the gym.</p>
+            <p>We were asked to enter the school from the back lot, not the front of the school.</p>
             <strong>7:00pm &mdash; Varsity Football Game at Miramonte</strong> (Optional)<br><br>
             <strong>7:00pm &mdash; Connect Early</strong><br>
             <p>Informal get together at: <br>
@@ -20,6 +22,8 @@
             Walnut Creek<br>
             925-934-2500 <br>
             (closest hotel to the Saturday night Back Forty Texas BBQ event).  Meet in the Embassy Lounge/Bar for visiting, no host drinks & hors d&apos;oeuvres.  Embassy Grill is available for a no-host meal.</p>
+            <p>Pleasant Hill BART is across the street.<br><br>
+For parking, enter the Embassy driveway.  Go left for valet, or go straight down the ramp and then to the right for parking ($5 for 2 hours)</p>
          </div>
     </div>
 
