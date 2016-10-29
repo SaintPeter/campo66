@@ -39,6 +39,10 @@ Route::group(['middleware' => 'web'], function () {
         return view('activities');
     })->name('activities');
 
+    Route::get('/photos', function () {
+        return view('photos');
+    })->name('photos');
+
     Route::get('/classlist', 'DisplayController@classlist')->name('classlist');
     Route::get('/answers/{guest}', 'DisplayController@answers')->name('answers');
 

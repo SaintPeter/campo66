@@ -53,7 +53,7 @@
 					    <li><a href="{{ route('classmates.index') }}">Classmates</a></li>
 						<li><a href="{{ url('/logout') }}">Logout</a></li>
 					@endif
-				        <li><a href="{{ route('activities') }}">Activities</a></li>
+				        <li><a href="{{ route('photos') }}">Photos</a></li>
 				        <li><a href="{{ route('classlist') }}">Class List</a></li>
 				        <li><a href="{{ route('contact') }}">Contact Us</a></li>
 

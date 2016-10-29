@@ -34,6 +34,13 @@ Breadcrumbs::register('activities', function($breadcrumbs)
     $breadcrumbs->push('Activities', route('activities'));
 });
 
+// Home > Photos
+Breadcrumbs::register('photos', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Photos', route('photos'));
+});
+
 // Home > Class List > Guest
 Breadcrumbs::register('answers', function($breadcrumbs, $guest)
 {
